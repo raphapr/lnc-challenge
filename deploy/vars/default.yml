@@ -19,3 +19,8 @@ pm2_apps:
   cmd: startOrGracefulReload
   env:
     NODE_ENV: development
+
+# for let's encrypt
+certbot_auto_renew_user: "{{ ansible_user_id }}"
+certbot_auto_renew_minute: 20
+certbot_auto_renew_hour: 5

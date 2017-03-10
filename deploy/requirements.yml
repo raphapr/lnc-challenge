@@ -2,4 +2,8 @@
   src: https://github.com/raphapr/ansible-pm2
   version: origin/master
 
-- src: geerlingguy.nginx
+- name: jdauphant.nginx
+  src: https://github.com/raphapr/ansible-role-nginx
+  version: origin/master
+
+- src: jdauphant.ssl-certs

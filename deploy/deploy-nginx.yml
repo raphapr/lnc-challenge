@@ -4,5 +4,42 @@
   vars_files:
     - ["vars/default.yml"]
   roles:
-    - geerlingguy.nginx
-  tasks:
+     - role: jdauphant.ssl-certs
+       become: true
+       become_user: root
+       ssl_certs_generate_dh_param: true
+     - role: jdauphant.nginx
+       become: true
+       become_user: root
+       nginx_configs:
+          ssl:
+               - ssl_certificate_key {{ssl_certs_privkey_path}}
+               - ssl_certificate     {{ssl_certs_cert_path}}
+               - ssl_dhparam         {{ssl_certs_dhparam_path}}
+       nginx_sites:
+          default:
+               - listen 8080
+               - server_name _
+               - |
+                 location / {
+                   proxy_pass http://localhost:3000;
+                   proxy_http_version 1.1;
+                   proxy_set_header Upgrade $http_upgrade;
+                   proxy_set_header Connection 'upgrade';
+                   proxy_set_header Host $host;
+                   proxy_cache_bypass $http_upgrade;
+                 }
+          https:
+               - listen 443 ssl
+               - server_name _
+               - |
+                 location / {
+                   proxy_set_header X-Real-IP $remote_addr;
+                   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                   proxy_set_header X-NginX-Proxy true;
+                   proxy_pass http://localhost:3000/;
+                   proxy_ssl_session_reuse off;
+                   proxy_set_header Host $http_host;
+                   proxy_cache_bypass $http_upgrade;
+                   proxy_redirect off;
+                 }
