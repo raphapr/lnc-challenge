@@ -1,29 +1,44 @@
 ---
 - name: Deploying application
   hosts: all
+  sudo: yes
   vars_files:
-    - ["vars/default.yml","/vars/pm2.yml"]
+    - ["vars/default.yml"]
   roles:
     - common
-    - nodejs
     - weareinteractive.pm2
-  tasks:
-    - name: Install global npm packages
-      npm: 
+  pre_tasks:
+
+    - name: Add the Nodesource apt key
+      apt_key: 
+        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key 
+        state: present
+      become: true
+      become_user: root
+     
+    - name: Add nodesource repository
+      apt_repository: 
+        repo: deb https://deb.nodesource.com/node_{{ nodejs_version }} xenial main
+        state: present
+      become: true
+      become_user: root
+     
+    - name: Install nodejs and some dependencies
+      apt: 
         name: "{{ item }}"
-        global: yes
+        update_cache: yes 
+        state: present
       with_items:
-        - pm2
+          - nodejs
+          - build-essential
       become: true
       become_user: root
 
-    - name: install npm packages for root
+    - name: creating deploy directory
       file: 
         path: "{{ deploy_app_dir }}"
         state: directory
         mode: 0755
-      become: true
-      become_user: root
 
     - name: Pull sources from the repository.
       git: 
@@ -33,6 +48,7 @@
 
     - name: Install packages based on package.json
       npm:
-        path: "{{ deploy_app_dir/src }}"
-        executable: /opt/nvm/v0.10.1/bin/npm
+        path: "{{ deploy_app_dir }}/src"
         state: present
+      become: true
+      become_user: root
