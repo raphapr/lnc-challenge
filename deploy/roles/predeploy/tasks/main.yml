@@ -3,12 +3,24 @@
         path: "{{ deploy_app_dir }}"
         state: directory
         mode: 0755
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+      become: true
+      become_user: root
 
     - name: Pull sources from the repository.
       git: 
         repo: "{{ repo_url }}"
         dest: "{{ deploy_app_dir }}"
         version: "{{ repo_version }}"
+
+    - name: Install pm2 node.js package globally.
+      npm:
+        name: pm2
+        global: yes
+        state: latest
+      become: true
+      become_user: root
 
     - name: Install packages based on package.json
       npm:

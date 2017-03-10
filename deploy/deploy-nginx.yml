@@ -1,0 +1,8 @@
+---
+- name: Deploying application
+  hosts: all
+  vars_files:
+    - ["vars/default.yml"]
+  roles:
+    - geerlingguy.nginx
+  tasks:

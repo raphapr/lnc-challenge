@@ -1,11 +1,10 @@
 ---
 - name: Deploying application
   hosts: all
-  sudo: yes
   vars_files:
     - ["vars/default.yml"]
   roles:
     - common
     - nodejs
     - predeploy
-    - weareinteractive.pm2
+    - { role: weareinteractive.pm2, sudo: yes }

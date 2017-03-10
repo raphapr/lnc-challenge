@@ -11,10 +11,8 @@ rollback_app_dir: "/var/apps/{{ app_name }}/{{ app_name }}-before"
 # pm2
 pm2_user: root
 pm2_service_name: pm2-root
-pm2_cmds:
-- run: delete
-  args: console_error
-  ignore_errors: yes
+pm2_service_enabled: yes
+pm2_service_state: started
 pm2_apps:
 - run: apps.json
   path: "{{ deploy_app_dir }}/src"

@@ -1,2 +1,5 @@
-- src: weareinteractive.pm2
+- name: weareinteractive.pm2
+  src: https://github.com/raphapr/ansible-pm2
+  version: origin/master
+
 - src: geerlingguy.nginx
