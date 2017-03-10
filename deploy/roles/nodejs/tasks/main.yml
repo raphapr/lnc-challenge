@@ -1,25 +1,29 @@
   - name: update apt packages
-    apt: update_cache=yes cache_valid_time=3600
+    apt: 
+      update_cache: yes 
+      cache_valid_time: 3600
 
-  - name: Download the nvm(node version manager) install script
-    get_url: url=https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh dest=/tmp/install.sh
-
-  - name: Install dependencies 
-    apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
-    with_items:
-      - git
-      - curl
-      - build-essential
-      - libssl-dev
-    become: yes
+  - name: Add the Nodesource apt key
+    apt_key: 
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key 
+      state: present
+    become: true
     become_user: root
-
-  - name: Execute the nvm install script
-    script: /tmp/install.sh
-
-  - name: Register the NVM_DIR
-    shell: echo $NVM_DIR
-    register: nvm_dir 
-
-  - name: Install latest nodejs LTS version
-    shell: . {{ nvm_dir.stdout }}/nvm.sh && nvm install --lts
+   
+  - name: Add nodesource repository
+    apt_repository: 
+      repo: deb https://deb.nodesource.com/node_{{ nodejs_version }} xenial main
+      state: present
+    become: true
+    become_user: root
+   
+  - name: Install nodejs and some dependencies
+    apt: 
+      name: "{{ item }}"
+      update_cache: yes 
+      state: present
+    with_items:
+        - nodejs
+        - build-essential
+    become: true
+    become_user: root

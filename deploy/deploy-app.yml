@@ -2,27 +2,37 @@
 - name: Deploying application
   hosts: all
   vars_files:
-    - ["vars/default.yml"]
+    - ["vars/default.yml","/vars/pm2.yml"]
   roles:
     - common
     - nodejs
+    - weareinteractive.pm2
   tasks:
     - name: Install global npm packages
-      npm: name={{ item }} global=yes
-      become_user: root
+      npm: 
+        name: "{{ item }}"
+        global: yes
       with_items:
         - pm2
-
-    - name: Make app dir
+      become: true
       become_user: root
-      shell: mkdir -p {{ deploy_app_dir }}
-
-    - name: Pull sources from the repository.
-      sudo: no
-      git: repo={{ repo_url }}
-           dest={{ deploy_app_dir }}
-           version={{ repo_version }}
 
     - name: install npm packages for root
-      sudo: no
-    shell: chdir={{ deploy_app_dir }}/src npm install
+      file: 
+        path: "{{ deploy_app_dir }}"
+        state: directory
+        mode: 0755
+      become: true
+      become_user: root
+
+    - name: Pull sources from the repository.
+      git: 
+        repo: "{{ repo_url }}"
+        dest: "{{ deploy_app_dir }}"
+        version: "{{ repo_version }}"
+
+    - name: Install packages based on package.json
+      npm:
+        path: "{{ deploy_app_dir/src }}"
+        executable: /opt/nvm/v0.10.1/bin/npm
+        state: present

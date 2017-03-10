@@ -3,5 +3,7 @@
 repo_url: https://github.com/raphapr/lnc-challenge.git
 repo_version: master
 app_name: lncserver
+nodejs_version: 6.x
 deploy_dir: "~/{{ app_name }}"
-deploy_app_dir: "~/{{ app_name }}/{{ app_name }}-app"
+deploy_app_dir: "~/{{ app_name }}/{{ app_name }}-current"
+rollback_app_dir: "~/{{ app_name }}/{{ app_name }}-before"
