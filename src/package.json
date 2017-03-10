@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "description": "A sample Node.js app using Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "*"
+},
+  "author": "Raphael P. Ribeiro <raphaelpr01@gmail.com"
+}

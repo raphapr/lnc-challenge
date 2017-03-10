@@ -1,0 +1,25 @@
+  - name: update apt packages
+    apt: update_cache=yes cache_valid_time=3600
+
+  - name: Download the nvm(node version manager) install script
+    get_url: url=https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh dest=/tmp/install.sh
+
+  - name: Install dependencies 
+    apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+    with_items:
+      - git
+      - curl
+      - build-essential
+      - libssl-dev
+    become: yes
+    become_user: root
+
+  - name: Execute the nvm install script
+    script: /tmp/install.sh
+
+  - name: Register the NVM_DIR
+    shell: echo $NVM_DIR
+    register: nvm_dir 
+
+  - name: Install latest nodejs LTS version
+    shell: . {{ nvm_dir.stdout }}/nvm.sh && nvm install --lts

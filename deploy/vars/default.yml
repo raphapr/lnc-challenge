@@ -1,0 +1,7 @@
+---
+#Configuration
+repo_url: https://github.com/raphapr/lnc-challenge.git
+repo_version: master
+app_name: lncserver
+deploy_dir: "~/{{ app_name }}"
+deploy_app_dir: "~/{{ app_name }}/{{ app_name }}-app"
