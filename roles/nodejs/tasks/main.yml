@@ -27,3 +27,11 @@
         - build-essential
     become: true
     become_user: root
+
+  - name: Install pm2 nodejs package globally.
+    npm:
+      name: pm2
+      global: yes
+      state: latest
+    become: true
+    become_user: root

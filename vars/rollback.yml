@@ -1,5 +1,5 @@
 pm2_cmds:
 - run: deploy
-  args: src/ecosystem.config.js production revert
+  args: src/ecosystem.config.js production revert --force
 pm2_apps_default_env:
   NODE_ENV: production
