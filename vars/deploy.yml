@@ -1,0 +1,13 @@
+# pm2
+pm2_user: root
+pm2_service_name: pm2-root
+pm2_service_enabled: yes
+pm2_service_state: started
+pm2_cmds:
+- run: deploy
+  args: src/ecosystem.config.js production setup
+  ignore_errors: yes
+- run: deploy
+  args: src/ecosystem.config.js production
+pm2_apps_default_env:
+  NODE_ENV: production

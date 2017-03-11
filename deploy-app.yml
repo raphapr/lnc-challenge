@@ -2,7 +2,8 @@
 - name: Deploying application
   hosts: all
   vars_files:
-    - ["vars/default.yml"]
+    - "vars/default.yml"
+    - "vars/deploy.yml"
   roles:
     - common
     - nodejs

@@ -8,7 +8,7 @@ module.exports = {
     // First application
     {
       name      : "lnc-server",
-      script    : "index.js",
+      script    : "src/index.js",
       watch     : true,
       instances : 0,
       exec_mode : "cluster",
