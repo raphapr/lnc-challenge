@@ -1,10 +1,8 @@
 ---
-- name: Deploying application
+- name: Update application
   hosts: all
   vars_files:
     - "vars/default.yml"
-    - "vars/deploy.yml"
+    - "vars/update.yml"
   roles:
-    - common
-    - nodejs
     - { role: weareinteractive.pm2, sudo: yes }
