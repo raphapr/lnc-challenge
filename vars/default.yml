@@ -8,6 +8,12 @@ deploy_dir: "/var/apps/{{ app_name }}"
 deploy_app_dir: "/var/apps/{{ app_name }}/{{ app_name }}-current"
 rollback_app_dir: "/var/apps/{{ app_name }}/{{ app_name }}-before"
 
+# pm2
+pm2_user: root
+pm2_service_name: pm2-root
+pm2_service_enabled: yes
+pm2_service_state: started
+
 # for let's encrypt
 certbot_auto_renew_user: "{{ ansible_user_id }}"
 certbot_auto_renew_minute: 20

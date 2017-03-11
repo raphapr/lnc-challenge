@@ -1,8 +1,3 @@
-# pm2
-pm2_user: root
-pm2_service_name: pm2-root
-pm2_service_enabled: yes
-pm2_service_state: started
 pm2_cmds:
 - run: deploy
   args: src/ecosystem.config.js production setup
