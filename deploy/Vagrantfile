@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     apt-add-repository ppa:ansible/ansible
     apt-get update
     apt-get install -y tmux ansible
-    wget bit.ly/rprtmux -O /root/.tmux.conf
+    wget bit.ly/rprtmux -O /home/vagrant/.tmux.conf
    SHELL
 
 end

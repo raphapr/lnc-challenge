@@ -18,7 +18,7 @@
                - ssl_dhparam         {{ssl_certs_dhparam_path}}
        nginx_sites:
           default:
-               - listen 8080
+               - listen 80
                - server_name _
                - |
                  location / {
