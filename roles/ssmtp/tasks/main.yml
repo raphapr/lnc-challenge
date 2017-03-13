@@ -1,0 +1,17 @@
+  - name: install ssmtp and dependencies
+    apt: pkg={{ item }} state=present
+    with_items:
+      - ssmtp
+      - mailutils
+    become: yes
+    become_user: root
+
+  - name: Configuring ssmtp
+    template:
+      src: "roles/ssmtp/templates/ssmtp.conf.j2"
+      dest: "/etc/ssmtp/ssmtp.conf"
+      owner: "root"
+      group: "root"
+      mode: "0644"
+    become: yes
+    become_user: root

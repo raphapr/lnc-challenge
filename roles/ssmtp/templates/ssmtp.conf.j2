@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+#
+# Config file for sSMTP sendmail
+#
+
+root={{ ssmtp_root }}
+mailhub={{ ssmtp_mailhub }}
+hostname={{ ssmtp_hostname | default(ansible_fqdn) }}
+
+# Where will the mail seem to come from?
+{% if ssmtp_rewrite_domain != '' %}
+rewriteDomain={{ ssmtp_rewrite_domain }}
+{% endif %}
+
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+FromLineOverride={{ ssmtp_from_line_override }}
+
+AuthUser={{ ssmtp_auth_user }}
+AuthPass={{ ssmtp_auth_pass }}
+UseSTARTTLS={{ ssmtp_use_starttls }}
+UseTLS={{ ssmtp_use_tls }}

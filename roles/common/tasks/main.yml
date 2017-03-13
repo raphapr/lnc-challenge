@@ -10,6 +10,8 @@
       - curl
       - git
       - wrk
+      - ssmtp
+      - mailutils
     become: yes
     become_user: root
 

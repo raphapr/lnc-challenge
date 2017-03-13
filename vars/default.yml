@@ -14,3 +14,21 @@ pm2_service_state: started
 certbot_auto_renew_user: "{{ ansible_user_id }}"
 certbot_auto_renew_minute: 20
 certbot_auto_renew_hour: 5
+
+# ssmtp
+
+ssmtp_root: lnc.chall3ng3@gmail.com
+ssmtp_mailhub: smtp.gmail.com:587
+ssmtp_hostname: localhost
+ssmtp_rewrite_domain: gmail.com
+ssmtp_auth_user: lnc.chall3ng3@gmail.com
+ssmtp_auth_pass: dexqiyfdavjeimgc
+ssmtp_use_starttls: "YES"
+ssmtp_use_tls: "YES"
+ssmtp_from_line_override: "YES"
+
+# email receiver
+ssmtp_receiver: raphaelpr01@gmail.com
+
+
+

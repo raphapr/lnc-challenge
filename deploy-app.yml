@@ -8,11 +8,12 @@
     - common
     - nodejs
     - { role: weareinteractive.pm2, sudo: yes }
+    - scripts
+    - ssmtp                                                                                                    
   tasks:
-    - name: Copying load_tests script
-      copy:
-        src: "{{ inventory_dir }}/scripts/load_tests.sh"
-        dest: /usr/local/bin/load_tests
-        mode: 0755
-      become: true
-      become_user: root
+    - name:
+      cron:
+        name: "Set email cron job"
+        minute: "0"
+        hour: "5,2"
+        job: "logparser | mail -s 'Web server daily log' {{ ssmtp_receiver }}"

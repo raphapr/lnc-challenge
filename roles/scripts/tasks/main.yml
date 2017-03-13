@@ -1,0 +1,10 @@
+  - name: Install scripts to system
+    copy:
+      src: "roles/scripts/files/{{ item }}"
+      dest: "/usr/local/bin/{{ item }}"
+      mode: 0755
+    with_items:
+      - load_tests
+      - logparser
+    become: true
+    become_user: root

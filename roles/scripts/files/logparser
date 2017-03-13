@@ -1,0 +1,26 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE: logparser
+# 
+#         USAGE: ./logparser
+# 
+#   DESCRIPTION: parse nginx access logs
+# 
+#       OPTIONS: ---
+#  DEPENDENCIES: wrk
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Raphael P. Ribeiro
+#       CREATED: 13-03-2017 1:22
+#===============================================================================
+
+# nginx access log
+LOGFILE="/var/log/nginx/access.log"
+
+if [[ ! -e $LOGFILE ]]; then
+    echo "ERROR! $LOGFILE doesn't exist. Try install nginx."
+    exit 1
+fi
+
+sudo awk '{print $9, $7 }' $LOGFILE | sort | uniq -c
