@@ -10,5 +10,5 @@ CONTAINER_ID=$(mktemp)
 
 .PHONY: test
 test:
-	docker run --detach -e "ROLE_NAME=$(ROLE_NAME)" --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v $(PWD):$(ROLE_PATH) geerlingguy/docker-ubuntu1604-ansible:latest /usr/lib/systemd/systemd
-	docker exec --tty "$(cat $(CONTAINER_ID))" env TERM=xterm $(TEST_CMD)
+	docker run --detach -e "ROLE_NAME=$(ROLE_NAME)" --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v $(PWD):$(ROLE_PATH) geerlingguy/docker-ubuntu1604-ansible:latest "/lib/systemd/systemd > $(CONTAINER_ID)"
+	docker exec --tty "$(cat $(CONTAINER_ID))" env TERM=xterm "$(TEST_CMD)"
