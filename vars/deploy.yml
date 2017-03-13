@@ -5,5 +5,7 @@ pm2_cmds:
 - run: deploy
   args: src/ecosystem.config.js production --force
   ignore_errors: no
+- run: save
+  ignore_errors: no
 pm2_apps_default_env:
   NODE_ENV: production
