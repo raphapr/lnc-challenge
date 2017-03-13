@@ -1,6 +1,6 @@
 # LNC Challenge
 
-[![Build Status](https://img.shields.io/travis/raphapr/ansible-pm2.svg)](https://travis-ci.org/raphapr/ansible-pm2)
+[![Build Status](https://api.travis-ci.org/raphapr/lnc-challenge.svg)](https://travis-ci.org/raphapr/ansible-pm2)
 [![GitHub Stars](https://img.shields.io/github/stars/raphapr/ansible-pm2.svg)](https://github.com/raphapr/ansible-pm2)
 
 > `lnc-challenge` is an set of [Ansible](http://www.ansible.com) roles that deploys a sample nodejs web server and...
