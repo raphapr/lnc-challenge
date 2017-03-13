@@ -1,9 +1,7 @@
 - name: weareinteractive.pm2
-  src: https://github.com/raphapr/ansible-pm2
-  version: origin/master
+  src: raphapr.pm2
 
 - name: jdauphant.nginx
-  src: https://github.com/raphapr/ansible-role-nginx
-  version: origin/master
+  src: raphapr.nginx
 
 - src: jdauphant.ssl-certs

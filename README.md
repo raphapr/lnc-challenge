@@ -1,5 +1,8 @@
 # LNC Challenge
 
+[![Build Status](https://img.shields.io/travis/raphapr/ansible-pm2.svg)](https://travis-ci.org/raphapr/ansible-pm2)
+[![GitHub Stars](https://img.shields.io/github/stars/raphapr/ansible-pm2.svg)](https://github.com/raphapr/ansible-pm2)
+
 > `lnc-challenge` is an set of [Ansible](http://www.ansible.com) roles that deploys a sample nodejs web server and...
 >
 > * configures system: common packages, set time zone...
@@ -42,7 +45,7 @@ $ ansible-playbook -i local rollback-app.yml -e "n=1"
 
 ## Scripts
 
-#### load_tests
+### load_tests
 
 A simple script that does a load test on the web server and returns maximum throughput (requests/sec). It uses wrk with 18 threads and 200 connections.
 
@@ -58,7 +61,7 @@ $ load_tests
 Maximum throughput: 1923.41 requests/sec
 ```
 
-#### logparser
+### logparser
 
 A simple script that parse nginx access log (sudo privilegies needed).
 
