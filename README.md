@@ -17,15 +17,23 @@
 * Ansible >= 2.2
 * User with sudo privilegies
 
-## Usage
+## Installation
 
-First of all, install required roles:
+First of all, download this repository:
+
+```shell
+$ git clone https://github.com/raphapr/lnc-challenge.git && cd lnc-challenge
+```
+
+Install required roles:
 
 ```shell
 $ sudo ansible-galaxy install -r requirements.yml
 ```
 
-Deploy app:
+## Usage
+
+#### Deploy app
 
 ```shell
 $ ansible-playbook -i local deploy.yml
