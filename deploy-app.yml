@@ -15,5 +15,5 @@
       cron:
         name: "Set email cron job"
         minute: "0"
-        hour: "5,2"
+        hour: "0"
         job: "logparser | mail -s 'Web server daily log' {{ ssmtp_receiver }}"

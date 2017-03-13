@@ -28,7 +28,7 @@ ssmtp_use_tls: "YES"
 ssmtp_from_line_override: "YES"
 
 # email receiver
-ssmtp_receiver: raphaelpr01@gmail.com
+ssmtp_receiver: lnc.chall3ng3@gmail.com
 
 
 
