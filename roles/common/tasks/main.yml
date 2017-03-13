@@ -17,6 +17,6 @@
 
   - name: Set timezone to America/Maceio
     timezone:
-      name: America/Maceio
+      name: "{{ timezone }}"
     become: yes
     become_user: root

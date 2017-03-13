@@ -1,8 +1,8 @@
 #Configuration
-repo_url: https://github.com/raphapr/lnc-challenge.git
 repo_version: master
 app_name: lncserver
 nodejs_version: 6.x
+timezone: America/Maceio
 
 # pm2
 pm2_user: root
@@ -10,13 +10,7 @@ pm2_service_name: pm2-root
 pm2_service_enabled: yes
 pm2_service_state: started
 
-# for let's encrypt
-certbot_auto_renew_user: "{{ ansible_user_id }}"
-certbot_auto_renew_minute: 20
-certbot_auto_renew_hour: 5
-
 # ssmtp
-
 ssmtp_root: lnc.chall3ng3@gmail.com
 ssmtp_mailhub: smtp.gmail.com:587
 ssmtp_hostname: localhost
@@ -29,6 +23,3 @@ ssmtp_from_line_override: "YES"
 
 # email receiver
 ssmtp_receiver: lnc.chall3ng3@gmail.com
-
-
-
